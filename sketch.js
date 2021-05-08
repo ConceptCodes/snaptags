@@ -26,6 +26,21 @@ function generate_background_pixels(){
   }
 }
 
+function draw_line(x1,y1,x2,y2) {
+  // Bersham Algorithm
+  // y = m(x) + c
+  fill(255)
+  let m = (y2-y1)/(x2-x1)
+  let c = ((y1*x2)-(y2*x1))/(x2-x1)
+  for(let i = x1; i < x2; i++){
+    draw_pixel_at(i, (m*i)+c)
+  }
+}
+
+function draw_square(x1,x2,y1,y2){
+
+}
+
 function draw_pixel_at(x,y){
   fill(255)
   rect(x,y,ROWS,COLS)
@@ -37,11 +52,11 @@ function draw_bulleyes() {
   let move = ROWS
   // first draw square in the center
   draw_pixel_at(center_point,center_point)
-  // then worry about making a bigger square
-  draw_pixel_at(center_point-move,center_point)
-  draw_pixel_at(center_point-move,center_point+move)
-  draw_pixel_at(center_point,center_point+move)
-  
+  // 1st ring
+  //top row
+  draw_pixel_at(center_point, center_point-(move*2))
+  draw_pixel_at(center_point-(move*2), center_point-(move*2))
+  draw_pixel_at(center_point-(move), center_point-(move*2))
 }
 
 function setup() {
@@ -53,5 +68,6 @@ function draw() {
   background(51)
   // create grid of pixels
   generate_background_pixels()
-  draw_bulleyes()
+  //draw_bulleyes()
+  draw_line(10,10,40,40)
 }
